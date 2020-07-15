@@ -5,6 +5,89 @@
     <title>Title</title>
 </head>
 <body>
-12312
+<!-- HTML结构 -->
+<!--<div id="test-jquery">
+    <p id="para-1" class="color-red">JavaScript</p>
+    <p id="para-2" class="color-green">Haskell</p>
+    <p class="color-red color-green">Erlang</p>
+    <p name="name" class="color-black">Python</p>
+    <form class="test-form" target="_blank" action="#0" onsubmit="return false;">
+        <legend>注册新用户</legend>
+        <fieldset>
+            <p><label>名字: <input name="name"></label></p>
+            <p><label>邮件: <input name="email"></label></p>
+            <p><label>口令: <input name="password" type="password"></label></p>
+            <p>
+                <button type="submit">注册</button>
+            </p>
+        </fieldset>
+    </form>
+</div>-->
+<!-- HTML结构 -->
+<!--<ul class="lang">
+    <li class="js dy">JavaScript</li>
+    <li class="dy">Python</li>
+    <li id="swift">Swift</li>
+    <li class="dy">Scheme</li>
+    <li name="haskell">Haskell</li>
+</ul>-->
+
+<form id="test-form" action="#0" onsubmit="return false;">
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Email: <input name="email"></label></p>
+    <p><label>Password: <input name="password" type="password"></label></p>
+    <p>Gender: <label>
+        <input name="gender" type="radio" value="Male" checked> Male</label>
+        <label><input name="gender" type="radio" value="Female"> Female</label>
+    </p>
+    <p><label>City: <select name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="CD">Chengdu</option>
+        <option value="XM">Xiamen</option>
+    </select></label></p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    /*
+        var JS = $('#para-1');//仅选择JavaScript
+        var Er = $('.color-red.color-green')//仅选择Erlang
+        var JE = $('.color-red') //选择JavaScript和Erlang
+        var JHEP =$('.color-red,.color-green,.color-black');//选择所有编程语言
+        var NAME = $('input[name=name]') // 选择名字input
+        var NE = $('input[name=name],input[name=email]')   // 选择邮件和名字input
+    */
+
+    //尝试使用find方法
+    // var ul = $('ul.lang');
+    // var dy = ul.find('.dy');//获取到了JavaScript,Python,Scheme
+
+    var dom = $('input,select');
+    var arr = dom.map(function () {
+        return this.value
+    }).get();
+
+    json = {
+
+        name: arr[0],
+
+        email: arr[1],
+
+        password: arr[2],
+
+        gender: $('form input[type=radio]:checked').val(),
+
+        city: arr[5]
+    }
+
+    json=JSON.stringify(json);
+
+
+
+
+</script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .highlight {
+            color: #dd1144;
+            background-color: #ffd351;
+        }
+
+        #test-highlight-css{
+            width: 300px;
+            height: 100px;
+            background-color: #ffd351;
+        }
+    </style>
+</head>
+<body>
+<!-- HTML结构 -->
+<!--<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>-->
+<!-- HTML结构 -->
+<!--<ul id="test-css">
+    <li class="lang dy"><span>JavaScript</span></li>
+    <li class="lang"><span>Java</span></li>
+    <li class="lang dy"><span>Python</span></li>
+    <li class="lang"><span>Swift</span></li>
+    <li class="lang dy"><span>Scheme</span></li>
+</ul>-->
+
+<div id="test-highlight-css">
+    <ul>
+        <li class="py"><span>Python</span></li>
+        <li class="js"><span>JavaScript</span></li>
+        <li class="sw"><span>Swift</span></li>
+        <li class="hk"><span>Haskell</span></li>
+    </ul>
+</div>
+
+<input id="test-radio" type="radio" name="test" checked value="1">123 <br>
+
+
+<!--练习val属性-->
+<input id="test-input" name="email" value="">
+<select id="test-select" name="city">
+    <option value="BJ" selected>Beijing</option>
+    <option value="SH">Shanghai</option>
+    <option value="SZ">Shenzhen</option>
+</select>
+<textarea id="test-textarea">Hello</textarea>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    //html(标签内容) 改变DOM节点的html
+    //text(文本内容) 改变DOM节点的文本
+    //JQ对象的另个好处，是我们可以再执行一个操作，作用在对应的一组DOM节点上。即使选择器没有返回任何DOM节点,调用JQ对象的方法依然不报错。
+    // var j1 = $('#test-ul li.js');
+    // var j2 = $('#test-ul li[name=book]');
+    // j1.html('<span style="color:red">JS</span>');
+    // j2.text(123);
+
+    //CSS()修改CSS样式可以这么使用
+    //  var div = $('#test-div');
+    //  div.css('color');//获取CSS属性
+    //  div.css('color','red')//设置css属性
+    //  div.css('color','') //清除CSS属性
+
+    //修改class属性;
+    // var div = $('#test-div');
+    //  div.hasClass('highlight');//false class是否包含highlight
+    //  div.addClass('highlight'); //添加highlight这个class
+    //  div.removeClass('highlight'); // 删除highlight这个class
+
+    //练习:分别用css()方法和addClass()方法高亮显示JavaScript：
+    var div = $('#test-highlight-css');
+    // div.find('ul li.js>span').css('backgroundColor','red').css('color','#ffd351')
+    // div.find('ul li.js>span').addClass('highlight');
+
+    //显示和隐藏
+    // var a = $('a[target=_blank]');
+    // a.hide();//隐藏
+    // a.show();//显示
+
+    //获取DOM信息
+    //利用JQ对象诺干个方法,我们可以直接获取DOM的高度等信息,而无需针对不同浏览器编写代码
+    // .width()可视宽度
+    // .height()可视的高度
+
+    //浏览器可视窗口大小
+    // $(window).width();
+    // $(window).height();
+    //
+    // //HTML文档大小
+    // $(document).width();
+    // $(document).height();
+    //
+    // //某个div的大小
+    // var div = $('#test-div');
+    // div.width()//显示宽度
+    // div.height() //显示高度
+    // div.width(400);//设置CSS属性 width:400px 是否生效要看CSS是否有效
+    // div.height('200px');//设置css属性 height:200px 是否生效要看CSS是否有效
+
+    //练习修改宽高
+    // var div = $('#test-highlight-css');
+    // div.width(400);
+    // div.height(300);
+
+    //attr()和removeAttr()方法用于操作DOM节点的属:
+    //<div id='test-div' name='Test' start='1'>...</div>
+    // var div = $('#test-div');
+    // div.attr('data'); //undefined 属性不存在
+    // div.attr('name'); //'Test'
+    // div.attr('name','Hello') // div的name属性变成'Hello'
+    // div.removeAttr('name'); //删除name属性;
+    // div.attr('name');//undefined 属性不存在
+
+    //prop()方法与attr()方法差不多
+    // var radio = $('#test-radio')
+    // radio.prop('checked') //true;
+    // // 类似的属性还有selected，处理时最好用is(':selected')
+    // radio.is(':checked') // true
+
+    //val()方法获取和设置对应的value属性
+    var input = $('input[name=email]'),
+        select = $('select[name=city]'),
+        textarea=$('#test-textarea');
+
+    input.val();//'test'
+    input.val('abc') //文本框的内容已经修改为abc
+
+    select.val()//'BJ' 默认的是BJ选择
+    select.val('SH'); // 选择框已变为Shanghai
+
+    textarea.val();//'Hello'
+    textarea.val('Hi');//文本框区域已经更新为'Hi'
+
+
+
+
+</script>
+
+
+</body>
+</html>
