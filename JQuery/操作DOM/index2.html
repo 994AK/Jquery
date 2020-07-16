@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test-div">
+        <ul>
+            <li><span>JavaScript</span></li>
+            <li><span>Python</span></li>
+            <li><span>Swift</span></li>
+        </ul>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        //append()添加DOM往后面添加
+        //prepend()添加DOM往最前添加
+        //after()某个节点插入指定的位置
+        //remove()删除节点
+
+
+    // function liDOM (item){
+    //     return `<li><span>${item}</span></li>`
+    // }
+
+    // let arr = ['JavaScript','Lua','Pascal','Python','Ruby','Swift'];
+    // arr = arr.sort();
+
+    
+
+    // let li = $('#test-div>ul>li')
+    // li.remove();
+
+    // let ul = $('#test-div > ul')
+    // ul.append(arr.map(liDOM));
+
+    //请再添加Pascal、Lua和Ruby，然后按字母顺序排序节点：
+
+    var ul = $('#test-div ul');
+    var languages = ['Pascal','Lua','Ruby'];
+    languages.map(lang=>ul.append('<li><span>'+lang+'</span></li>'))
+    var lis = ul.find('li');
+    lis.sort((li1,li2)=>li1.innerHTML < li2.innerHTML ? -1 : 1);
+    ul.append(lis);
+
+    </script>
+</body>
+</html>
