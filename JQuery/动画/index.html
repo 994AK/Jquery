@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #test-show-hide {
+            width: 0;
+            height: 0;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="test-show-hide"></div><br/>
+    <div id="text-text"></div>
+    <button id="text-btn">显示</button>
+
+<script>
+    /*
+    *  Jq内置动画
+    *    show / hide
+    *
+    *   hide动画隐藏
+    *   show动画显示
+    *   toggle()方法则根据当前状态决定是show()还是hide()。
+    *
+    * */
+    // $('#test-show-hide').hide(3000)
+    //
+    // $('#text-btn').click(()=>{
+    //     $('#test-show-hide').show(1000)
+    //     console.log(1);
+    // })
+
+    // $('#text-btn').click(()=>{
+    //     $('#test-show-hide').toggle(1000)
+    //     console.log(1);
+    // })
+
+    /*
+    *  slideUp / slideDown
+    *   垂直方向展开/收缩
+    *   slideUp 把一个可见的DOM元素收起，效果跟拉上窗帘一样;
+    *   slideDown 相反
+    *   slideToggle() 根据元素是否可见决定下一步动作
+    * */
+
+    // $('#text-btn').click(()=>{
+    //     $('#test-show-hide').slideDown(1000)
+    //     console.log(1);
+    // })
+
+    /*
+    *  fadeIn / fadeOut
+    *  fadeIn和fadeOut的动画效果是淡入淡出,也就是通过不断设置DOM元素的opacity实现；
+    *  fadeToggle 根据元素是否可见来决定下一步动作
+    * */
+
+    // $('#text-btn').click(()=>{
+    //     $('#test-show-hide').fadeToggle(1000)
+    //     console.log(1);
+    // })
+
+
+    /*
+    * 自定义动画
+    *   animate 实现任何动画效果;
+    *   传入的参数:
+    *       1.DOM元素最终的CSS状态和时间
+    *       2.CSS过渡时间
+    *       3.回调函数,当动画结束时，该函数将被调用;
+    * */
+
+    // $('#text-btn').click(e=>{
+    //     $("#test-show-hide").animate({
+    //         opacity:0.25,
+    //         width:'256px',
+    //         height:'256px',
+    //         backgroundColor:'darkgray'
+    //     },3000);
+    // })
+
+
+    // $('#text-btn').click(e=>{
+    //     $("#test-show-hide").animate({
+    //         opacity:0.25,
+    //         width:'256px',
+    //         height:'256px',
+    //     },3000,function () {
+    //         console.log('动画结束了');
+    //
+    //         $(this).css('opacity','1.0').css('width','128px').css('height','128px')
+    //     });
+    // })
+
+
+    /*
+    *  串行动画。delay()方法可以实现暂停
+    *
+    *
+    * */
+
+    // $('#text-btn').click(e=>{
+    //     // 动画效果：slideDown - 暂停 - 放大 - 暂停 - 缩小
+    //     $("#test-show-hide").slideDown(1000)
+    // .delay(1000) //暂停一秒
+    //     .animate({
+    //         width:'256px',
+    //         height:'256px'
+    //     },2000)
+    //     .delay(1000)  //暂停一秒
+    //     .animate({
+    //         width:'128px',
+    //         height:'128px',
+    //     },2000)
+    // })
+
+    $('#text-btn').click(e=>{
+        var a = 3;
+        $("#test-show-hide").animate({
+            opacity:0.5,
+            width:'200px',
+            height:'100px',
+            backgroundColor:'darkgray'
+        },3000,function () {
+            $(this).text('大家好,等一下');
+        })
+        .delay(1000) //等一下
+        .animate({
+            opacity:1,
+            width:'300px',
+            height:'200px',
+        },3000,function () {
+            $(this).text('我是杨光华')
+        })
+        .delay(1000)
+        .animate({
+            opacity:1,
+            width:'200px',
+            height:'100px',
+        },1000,function () {
+            $(this).text('我待会3秒后自动收回去')
+            var b = setInterval(function () {
+                $('#text-text').text(--a);
+                if(a === 0){
+                    $('#text-text').remove()
+                    clearInterval(b)
+                }
+            },1000)
+        })
+        .delay(3000)
+        .slideUp(3000)
+
+
+    })
+
+
+
+
+</script>
+
+
+</body>
+</html>
