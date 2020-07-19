@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<!-- HTML结构 -->
+<form id="test-form" action="test">
+    <legend>请选择想要学习的编程语言：</legend>
+    <fieldset>
+        <p><label class="selectAll">
+            <input type="checkbox"> <span class="selectAll">全选</span>
+            <span class="deselectAll" style="display: none">全不选</span></label>
+            <a href="#0" class="invertSelect">反选</a></p>
+        <p><label><input type="checkbox" name="lang" value="javascript"> JavaScript</label></p>
+        <p><label><input type="checkbox" name="lang" value="python"> Python</label></p>
+        <p><label><input type="checkbox" name="lang" value="ruby"> Ruby</label></p>
+        <p><label><input type="checkbox" name="lang" value="haskell"> Haskell</label></p>
+        <p><label><input type="checkbox" name="lang" value="scheme"> Scheme</label></p>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </fieldset>
+</form>
+<script>
+    /*
+    * 绑定合适的事件处理函数，实现以下逻辑：
+    *
+    * 当用户勾上“全选”时，自动选中所有语言，并把“全选”变成“全不选”；
+    *
+    * 当用户去掉“全不选”时，自动不选中所有语言；
+    *
+    * 当用户点击“反选”时，自动把所有语言状态反转（选中的变为未选，未选的变为选中）；
+    *
+    * 当用户把所有语言都手动勾上时，“全选”被自动勾上，并变为“全不选”；
+    * 当用户手动去掉选中至少一种语言时，“全不选”自动被去掉选中，并变为“全选”。
+    * */
+    //全选 && 不全选框按钮
+    var inputClick = $('label.selectAll > input[type=checkbox]')
+    //全部文字
+    var inputSelectAll = $('label.selectAll > span.selectAll');
+    //全不选文字
+    var inputDeselectAll = $('label.selectAll > .deselectAll');
+    //反选文字
+    var inputInvertSelect = $('label.selectAll > .invertSelect');
+    //数据结构打勾
+    var inputlang =$('#test-form > input[name=lang]')
+
+    /*
+        disabled属性
+        .hide()//隐藏
+        .show()//显示
+    */
+
+    //当用户勾上“全选”时，自动选中所有语言，并把“全选”变成“全不选”；
+    //当用户去掉“全不选”时，自动不选中所有语言；
+    inputClick.click(function () {
+        if (this.checked) {
+            //全选 && 全选变成不全选
+            inputSelectAll.hide();
+            inputDeselectAll.show();
+            inputlang.attr('checked', this.checked);
+        } else {
+            //不全选 && 不全选变成全选
+            inputSelectAll.show();
+            inputDeselectAll.hide();
+            inputlang.attr('checked', this.checked);
+        }
+    })
+
+    //当用户点击“反选”时，自动把所有语言状态反转（选中的变为未选，未选的变为选中）；
+    inputInvertSelect.click(function () {
+        inputlang.each(function () {
+            $(this).prop('checked', !$(this).prop('checked'));
+        })
+    })
+
+    //当用户把所有语言都手动勾上时，“全选”被自动勾上，并变为“全不选”；
+    //当用户手动去掉选中至少一种语言时，“全不选”自动被去掉选中，并变为“全选”。
+    inputlang.click(function(){
+        if (inputlang.get().every(e => e.checked)) {
+            inputClick.prop('checked', true);
+            inputSelectAll.hide();
+            inputDeselectAll.show();
+        } else {
+            inputClick.prop('checked', false);
+            inputDeselectAll.hide();
+            inputSelectAll.show();
+        }
+    })
+
+
+</script>
+</body>
+</html>

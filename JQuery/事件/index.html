@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #testMouseMoveDiv {
+            width: 600px;
+            height: 600px;
+            border: 1px solid papayawhip;
+        }
+
+        #testMouseMoveSpan {
+            color: darkgray;
+        }
+
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        /*       //初始化 当页面被载入并且DOM树完成初始化后触发
+               $(document).on('ready',function () {
+                   //触发点击提交
+                   $('#testForm').on('submit',function () {
+                       alert("submit!")
+                   })
+               })
+
+               //我们开始简化 ready
+               $(document).ready(function () {
+                   $('#testForm').submit(function () {
+                       alert("submit!")
+                   })
+               })
+
+               //document.ready事件 可以写成 $(function(){})
+               $(function () {
+                   $('#testForm').submit(function () {
+                       alert('submit!')
+                   })
+               })*/
+
+        // //可以反复绑定事件处理函数,他们依次执行
+        // $(function () {
+        //     console.log('init A...');
+        // })
+        //
+        // $(function () {
+        //     console.log('init B...');
+        // })
+        //
+        // $(function () {
+        //     console.log('init C...');
+        // })
+
+        //事件参数,获取鼠标位置和按键的值
+  /*      // let moveDiv = e => $('#testMouseMoveSpan').text('pageX=' + e.pageX + ',pageY=' + e.pageY)
+        // $(function () {
+        //     //默认绑定
+        //     $('#testMouseMoveDiv').mousemove(moveDiv);
+        //
+        //     //取消绑定
+        //     $('#BtnFalse').click(function () {
+        //         console.log(1);
+        //         $('#testMouseMoveDiv').off('mousemove', moveDiv);
+        //     })
+        //     //重新绑定
+        //     $('#BtnTrue').click(function () {
+        //         $('#testMouseMoveDiv').mousemove(moveDiv);
+        //     })
+        // })
+*/
+
+
+    </script>
+</head>
+<body>
+<!--<a id="test-link" href="#0">点我试试</a>
+
+&lt;!&ndash;事件的测试
+
+&ndash;&gt;
+mousemove:<span id="testMouseMoveSpan">把鼠标划入</span>
+<div id="testMouseMoveDiv"></div>
+&lt;!&ndash;取消鼠标绑定&ndash;&gt;
+<button id="BtnFalse">取消绑定</button>
+<button id="BtnTrue">启动绑定</button>
+<form id="testForm">
+
+</form>-->
+<input type="text" class="input">
+
+
+<script>
+    //绑定点击触发事件
+    //写法1
+    var a = $('#test-link');
+    a.on('click', function () {
+        alert("Hello!")
+    })
+
+    //写法2
+    a.click(function () {
+        alert("Hello!")
+    })
+
+    //知道写法后,我们认识一些API
+
+    /*
+    * 鼠标事件
+    * click 鼠标单击时触发;
+    * dblclick 鼠标双击时触发
+    * mouseenter 鼠标进入时触发
+    * mouseleave 鼠标移出时触发
+    * mousemove  鼠标在DOM内部移动的时候触发
+    * hover 鼠标进入和鼠标出去触发两个函数,相当于mouseleave 和 mousemove
+    * */
+
+    /*
+    * 键盘事件
+    * 键盘事件仅作用在当前焦点的DOM上，通常是<input>和<textarea>。
+    * keydown：键盘按下时触发；
+    * keyup：键盘松开时触发；
+    * keypress：按一次键后触发。
+    * */
+
+    /*
+    * 其他事件
+    * focus：当DOM获得焦点时触发；
+    * blur：当DOM失去焦点时触发；
+    * change：当<input>、<select>或<textarea>的内容改变时触发；
+    * submit：当<form>提交时触发；
+    * ready：当页面被载入并且DOM树完成初始化后触发
+    * 其中，ready仅作用于document对象。由于ready事件在DOM完成初始化后触发，且只触发一次，
+    * 所以非常适合用来写其他的初始化代码。假设我们想给一个<form>表单绑定submit事件，下面的代码没有预期的效果：
+    * */
+
+
+    //事件触发条件
+    //一个需要注意的问题，事件的触发总是有用户操作引发的。例如 我们监考文本框内容改动
+    // var input = $('input');
+    //
+    // input.change(function () {
+    //     console.log('changed...');
+    // })
+
+    var input = $('input');
+    input.val('change it!');
+    input.change();
+
+
+</script>
+</body>
+</html>
