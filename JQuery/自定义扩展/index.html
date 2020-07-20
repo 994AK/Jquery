@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <p>Jquery</p>
+</div>
+<div id="box2">
+    <p>Jquery</p>
+</div>
+
+<div id="test-highlight2">
+    <p>什么是<span>jQuery</span> <span>Plugin</span></p>
+    <p>编写<span>jQuery</span> <span>Plugin</span>可以用来扩展<span>jQuery</span>的功能。</p>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    $(function () {
+        //写着重复代码...应该用代码自定义封装
+        // $('#box p').css('backgroundColor', '#fffceb').css('color', '#d85939');
+        // $('#box2 p').css('backgroundColor', '#fffceb').css('color', '#d85939');
+
+        // //为了方便:给JQ对象绑定一个新方法是通过$.fn对象实现
+        // $.fn.highlight1 = function () {
+        //     //this已经绑定为当前JQuery对象；
+        //     this.css('backgroundColor', '#fffceb').css('color', '#d85939');
+        //     return this;
+        // }
+
+        // $('#box p').highlight1();
+        // $('#box2 p ').highlight1();
+
+
+        //为了用户体验，让用户自己添加颜色
+        // $.fn.highlight2 = function (options) {
+        //     //要考虑到各种情况;
+        //     //options 为undefined
+        //     //options 只有部分key
+        //     var bgcolor = options && options.backgroundColor || '#fffceb';
+        //     var color = options && options.color || '#d85030';
+        //     this.css('backgroundColor', bgcolor).css('color', color);
+        //     return this;
+        // }
+        //
+        // $('#test-highlight2 span').highlight2({
+        //     backgroundColor:'#00a8e6',
+        //     color:'#fff'
+        // })
+
+        //升级版 $.extend方法,它把多个object对象的和属性合并到第一个target对象中
+        //默认值和用户传入的options合并到对象 {}中并返回
+        $.fn.highlight = function (options) {
+            //合并默认值和用户设定值
+            var opts = $.extend({},$.fn.highlight.defaults,options);
+            this.css('backgroundColor',opts.backgroundColor).css('color',opts.color);
+            return this
+        }
+        //设定默认值
+        $.fn.highlight.default = {
+            color:'#d85030',
+            backgroundColor:'#fff8de'
+        }
+
+        //用户输入
+        $.fn.highlight.default.color = '#fff';
+        $.fn.highlight.default.backgroundColor = '#000'
+        
+        /*
+        * 最终，我们得出编写一个jQuery插件的原则：
+        * 给$.fn绑定函数，实现插件的代码逻辑；
+        * 插件函数最后要return this;以支持链式调用；
+        * 插件函数要有默认值，绑定在$.fn.<pluginName>.defaults上；
+        * 用户在调用时可传入设定值以便覆盖默认值。
+        * */
+
+
+
+    })
+</script>
+</body>
+</html>
